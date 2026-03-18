@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Marni Riffkin, LICSW / LCSW-C — GLP-1 Counseling & Weight Loss Support</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&family=DM+Sans:wght@300;400;500&family=Playfair+Display:ital,wght@0,400;0,500;1,400;1,500&display=swap" rel="stylesheet">
 <style>
   :root {
     --bg:        #F4F1EC;
@@ -20,9 +20,9 @@
     --terra-lt:  #F2D5C8;
     --gold:      #B68A3A;
     --gold-lt:   #F0E2C0;
-    --text:      #1A1A1A;
-    --text-mid:  #3D3D3D;
-    --text-lt:   #6B6B6B;
+    --text:      #111111;
+    --text-mid:  #222222;
+    --text-lt:   #444444;
   }
 
   *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
@@ -66,7 +66,7 @@
   .hero-pill { display:inline-flex; align-items:center; gap:.6rem; background:var(--slate-lt); border:1px solid var(--slate); padding:.3rem 1rem; border-radius:100px; width:fit-content; font-size:.69rem; letter-spacing:.1em; text-transform:uppercase; color:var(--navy-mid); margin-bottom:1.8rem; }
   .hero-pill::before { content:''; width:7px; height:7px; background:var(--slate); border-radius:50%; flex-shrink:0; }
 
-  .hero-title { font-family:'Cormorant Garamond',serif; font-size:4.5rem; font-weight:300; line-height:1.06; color:var(--navy); margin-bottom:1.8rem; }
+  .hero-title { font-family:'Playfair Display',serif; font-size:4.2rem; font-weight:400; line-height:1.08; color:var(--navy); margin-bottom:1.8rem; }
   .hero-title em { font-style:italic; color:var(--terracotta); }
   .hero-title span { color:var(--gold); font-style:normal; }
 
@@ -97,10 +97,31 @@
   /* ── SHARED ── */
   section { padding:7rem 5.5rem; }
   .section-eyebrow { font-size:.68rem; letter-spacing:.18em; text-transform:uppercase; color:var(--text-lt); margin-bottom:.9rem; }
-  .section-title { font-family:'Cormorant Garamond',serif; font-size:2.85rem; font-weight:300; color:var(--navy); line-height:1.14; margin-bottom:1rem; }
+  .section-title { font-family:'Playfair Display',serif; font-size:2.7rem; font-weight:400; color:var(--navy); line-height:1.14; margin-bottom:1rem; }
   .section-title em { font-style:italic; color:var(--terracotta); }
   .section-title strong { font-weight:400; color:var(--gold); font-style:normal; }
   .divider { width:44px; height:2px; background:var(--slate); margin:1.2rem 0 2rem; }
+
+
+  /* ── GLP1 ACCORDION ── */
+  .glp1-accord { display:flex; flex-direction:column; gap:1px; background:var(--border); margin-top:.5rem; }
+  .ga-item { background:var(--surface); overflow:hidden; transition:background .2s; }
+  .ga-item:hover { background:var(--bg); }
+  .ga-header { display:flex; align-items:center; justify-content:space-between; padding:1.1rem 1.5rem; cursor:pointer; user-select:none; }
+  .ga-header-left { display:flex; align-items:center; gap:.9rem; }
+  .ga-icon { width:32px; height:32px; background:var(--slate-lt); border-radius:50%; display:flex; align-items:center; justify-content:center; color:var(--navy-mid); flex-shrink:0; }
+  .ga-title { font-family:'Playfair Display',serif; font-size:1rem; color:var(--navy); font-weight:400; }
+  .ga-plus { width:24px; height:24px; border-radius:50%; background:var(--slate-lt); display:flex; align-items:center; justify-content:center; color:var(--navy); font-size:1.1rem; line-height:1; flex-shrink:0; transition:transform .3s, background .2s; }
+  .ga-plus.open { transform:rotate(45deg); background:var(--navy); color:#fff; }
+  .ga-body { max-height:0; overflow:hidden; transition:max-height .35s ease, padding .3s ease; font-size:.85rem; color:var(--text-lt); line-height:1.85; padding:0 1.5rem; }
+  .ga-body.open { max-height:150px; padding:.2rem 1.5rem 1.2rem 3.9rem; }
+
+  /* ── WHO ROWS ── */
+  .who-row-item { background:var(--surface); padding:2rem 2.2rem; display:flex; align-items:flex-start; gap:1.2rem; transition:background .2s; }
+  .who-row-item:hover { background:var(--parchment); }
+  .who-row-num { font-family:'Playfair Display',serif; font-size:2rem; font-weight:400; color:var(--slate-lt); line-height:1; flex-shrink:0; min-width:42px; }
+  .who-row-title { font-family:'Playfair Display',serif; font-size:1.05rem; font-weight:500; color:var(--navy); margin-bottom:.35rem; }
+  .who-row-desc { font-size:.82rem; color:var(--text-lt); line-height:1.8; }
 
   /* ── GLP1 ── */
   #glp1 { background:var(--surface); display:grid; grid-template-columns:1fr 1fr; gap:5rem; align-items:start; }
@@ -241,21 +262,103 @@
   .revealed { opacity:1; transform:translateY(0); }
 
   /* ── MOBILE ── */
+  .nav-hamburger { display:none; }
+
   @media(max-width:960px){
+    /* ── NAV ── */
     nav { padding:1rem 1.5rem; }
+    .nav-brand-creds { display:none; }
     .nav-links { display:none; }
+
+    /* Hamburger menu */
+    .nav-hamburger { display:flex; flex-direction:column; gap:5px; cursor:pointer; padding:.4rem; }
+    .nav-links { display:none; }
+    .nav-hamburger span { display:block; width:24px; height:2px; background:var(--navy); transition:all .3s; }
+
+    /* Mobile nav drawer */
+    .mobile-menu {
+      display:none; position:fixed; top:60px; left:0; right:0; bottom:0;
+      background:rgba(244,241,236,0.98); backdrop-filter:blur(14px);
+      z-index:200; flex-direction:column; align-items:center;
+      justify-content:center; gap:2rem; padding:2rem;
+    }
+    .mobile-menu.open { display:flex; }
+    .mobile-menu a {
+      font-size:1.3rem; font-family:'Playfair Display',serif;
+      color:var(--navy); text-decoration:none; letter-spacing:.03em;
+    }
+    .mobile-menu a.cta {
+      background:var(--terracotta); color:#fff;
+      padding:.7rem 2rem; font-family:'DM Sans',sans-serif;
+      font-size:.85rem; letter-spacing:.1em; text-transform:uppercase;
+    }
+    .mobile-menu a.portal {
+      border:1.5px solid var(--slate); color:var(--navy);
+      padding:.65rem 1.8rem; font-family:'DM Sans',sans-serif;
+      font-size:.82rem; letter-spacing:.1em; text-transform:uppercase;
+    }
+
+    /* ── HERO ── */
     #home { grid-template-columns:1fr; min-height:auto; }
-    .hero-left { padding:3.5rem 1.5rem 2.5rem; }
-    .hero-right { height:260px; }
-    .hero-title { font-size:2.9rem; }
-    section { padding:4rem 1.5rem; }
-    #glp1,#about,#contact { grid-template-columns:1fr; gap:2.5rem; }
+    .hero-left { padding:3rem 1.5rem 2rem; }
+    .hero-right { height:220px; }
+    .hero-title { font-size:2.4rem; }
+    .hero-desc { font-size:.88rem; }
+    .hero-badges { gap:1rem; }
+    .hero-stat-strip { grid-template-columns:1fr 1fr 1fr; }
+    .hero-stat { padding:.9rem 1rem; }
+    .hero-stat-num { font-size:1.3rem; }
+
+    /* ── SECTIONS ── */
+    section { padding:3.5rem 1.5rem; }
+    .section-title { font-size:2.1rem; }
+
+    /* ── GLP-1 ── */
+    #glp1 { grid-template-columns:1fr; gap:2rem; }
+    .glp1-highlight { font-size:1rem; }
+
+    /* ── WHO ── */
+    #who { padding:3.5rem 1.5rem; }
+    #who > div > div[style*="grid-template-columns:1fr 1fr"] {
+      grid-template-columns:1fr !important;
+    }
+    .who-row-item { padding:1.5rem; }
+    .who-row-num { font-size:1.5rem; min-width:32px; }
+    .who-row-title { font-size:.98rem; }
+
+    /* ── APPROACH ── */
     .approach-layout { grid-template-columns:1fr; gap:2.5rem; }
-    .who-grid,.forms-grid { grid-template-columns:1fr; }
-    .form-row { grid-template-columns:1fr; }
-    .faq-layout { grid-template-columns:1fr; gap:2rem; }
+
+    /* ── ABOUT ── */
+    #about { grid-template-columns:1fr; gap:2.5rem; }
+    .about-photo { aspect-ratio:4/3; max-height:280px; }
+    .about-photo::after { display:none; }
+
+    /* ── FAQ ── */
+    .faq-layout { grid-template-columns:1fr; gap:1.5rem; }
     .faq-sidebar { position:static; }
-    footer { padding:2rem 1.5rem; flex-direction:column; }
+    .faq-nav { display:none; }
+    .faq-q { font-size:.88rem; }
+
+    /* ── CONTACT & INTAKE ── */
+    #forms { padding:3.5rem 1.5rem !important; }
+    #forms > div { grid-template-columns:1fr !important; gap:2.5rem !important; }
+    .form-row { grid-template-columns:1fr; }
+
+    /* ── FOOTER ── */
+    footer { padding:2rem 1.5rem; flex-direction:column; align-items:flex-start; gap:.8rem; }
+    .footer-links { flex-wrap:wrap; gap:1rem; }
+  }
+
+  /* Extra small phones */
+  @media(max-width:480px){
+    .hero-title { font-size:2rem; }
+    .section-title { font-size:1.85rem; }
+    .hero-stat-strip { grid-template-columns:1fr 1fr; }
+    .hero-stat:last-child { display:none; }
+    #forms > div > div:first-child > div[style*="grid-template-columns:repeat(2"] {
+      grid-template-columns:1fr !important;
+    }
   }
 </style>
 </head>
@@ -276,7 +379,23 @@
     <li><a href="#forms" class="nav-cta">Contact &amp; Intake</a></li>
     <li><a href="https://www.simplepractice.com" target="_blank" rel="noopener" class="nav-portal">Client Portal ↗</a></li>
   </ul>
+
+  <!-- Mobile hamburger (shown via CSS on small screens) -->
+  <div class="nav-hamburger" id="hamburger" onclick="toggleMenu()">
+    <span></span><span></span><span></span>
+  </div>
 </nav>
+
+<!-- Mobile menu drawer -->
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#glp1" onclick="closeMenu()">GLP-1 Support</a>
+  <a href="#who" onclick="closeMenu()">Who I Help</a>
+  <a href="#approach" onclick="closeMenu()">Approach</a>
+  <a href="#about" onclick="closeMenu()">About</a>
+  <a href="#faq" onclick="closeMenu()">FAQs</a>
+  <a href="#forms" class="cta" onclick="closeMenu()">Contact &amp; Intake</a>
+  <a href="https://www.simplepractice.com" target="_blank" class="portal">Client Portal &#x2197;</a>
+</div>
 
 <!-- HERO -->
 <section id="home">
@@ -320,72 +439,107 @@
     <p class="section-eyebrow">Why Counseling + GLP-1s</p>
     <h2 class="section-title">Medication changes <em>what</em> you eat.<br>Therapy changes <strong>why</strong>.</h2>
     <div class="divider"></div>
-    <p style="font-size:.9rem;color:var(--text-lt);line-height:1.95;max-width:460px;margin-bottom:1.5rem;">GLP-1 medications reduce appetite and support weight loss — but they don't address the emotional habits, food relationships, body image struggles, or psychological patterns developed over a lifetime. That's where therapy makes the lasting difference.</p>
-    <div class="glp1-highlight">"GLP-1s create a window of opportunity where cravings are quieter. Therapy helps you use that window to build habits — and a relationship with yourself — that last."</div>
+    <p style="font-size:.9rem;color:var(--text-lt);line-height:1.9;max-width:460px;margin-bottom:1.5rem;">GLP-1s reduce appetite — but they don't address the emotional habits and patterns built over a lifetime. That's where therapy makes the lasting difference.</p>
+    <div class="glp1-highlight">"GLP-1s quiet the cravings. Therapy helps you use that window to build habits — and a relationship with yourself — that last."</div>
   </div>
   <div class="reveal">
-    <div class="glp1-card-stack">
-      <div class="glp1-card">
-        <div class="glp1-card-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="10"/></svg></div>
-        <div><h4>Food Noise &amp; Emotional Eating</h4><p>Learn to recognize emotional triggers — stress, boredom, loneliness — and build coping strategies that don't rely on food.</p></div>
+    <!-- Accordion-style cards -->
+    <div class="glp1-accord">
+
+      <div class="ga-item">
+        <div class="ga-header" onclick="toggleAccord(this)">
+          <div class="ga-header-left">
+            <div class="ga-icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="10"/></svg></div>
+            <span class="ga-title">Food Noise &amp; Emotional Eating</span>
+          </div>
+          <div class="ga-plus">+</div>
+        </div>
+        <div class="ga-body">Learn to recognize emotional triggers — stress, boredom, loneliness — and build coping strategies that don't rely on food.</div>
       </div>
-      <div class="glp1-card">
-        <div class="glp1-card-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg></div>
-        <div><h4>Body Image &amp; Identity Shifts</h4><p>Changing your body can bring unexpected emotions. We work through shifts in self-perception, identity, and self-worth beyond the scale.</p></div>
+
+      <div class="ga-item">
+        <div class="ga-header" onclick="toggleAccord(this)">
+          <div class="ga-header-left">
+            <div class="ga-icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg></div>
+            <span class="ga-title">Body Image &amp; Identity Shifts</span>
+          </div>
+          <div class="ga-plus">+</div>
+        </div>
+        <div class="ga-body">Changing your body can bring unexpected emotions. We work through shifts in self-perception and self-worth that go far beyond the scale.</div>
       </div>
-      <div class="glp1-card">
-        <div class="glp1-card-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg></div>
-        <div><h4>Sustainable Habits &amp; Long-Term Success</h4><p>Build realistic routines for movement, sleep, and stress — and develop relapse prevention skills so healthy habits hold when life gets hard.</p></div>
+
+      <div class="ga-item">
+        <div class="ga-header" onclick="toggleAccord(this)">
+          <div class="ga-header-left">
+            <div class="ga-icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg></div>
+            <span class="ga-title">Sustainable Habits &amp; Long-Term Success</span>
+          </div>
+          <div class="ga-plus">+</div>
+        </div>
+        <div class="ga-body">Build realistic routines for movement, sleep, and stress — with relapse prevention skills so healthy habits hold when life gets hard.</div>
       </div>
-      <div class="glp1-card">
-        <div class="glp1-card-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
-        <div><h4>Shame, Stigma &amp; the Weight of It All</h4><p>Feeling embarrassed about taking medication? You deserve a completely non-judgmental space to process all of it — without explanation or apology.</p></div>
+
+      <div class="ga-item">
+        <div class="ga-header" onclick="toggleAccord(this)">
+          <div class="ga-header-left">
+            <div class="ga-icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+            <span class="ga-title">Shame &amp; Stigma</span>
+          </div>
+          <div class="ga-plus">+</div>
+        </div>
+        <div class="ga-body">Feeling embarrassed about taking medication? You deserve a completely non-judgmental space to process all of it — without explanation or apology.</div>
       </div>
-      <div class="glp1-card">
-        <div class="glp1-card-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg></div>
-        <div><h4>Before, During &amp; After Medication</h4><p>Whether you're just starting, navigating side effects, or considering tapering, counseling provides continuity and prepares you for every phase.</p></div>
+
+      <div class="ga-item">
+        <div class="ga-header" onclick="toggleAccord(this)">
+          <div class="ga-header-left">
+            <div class="ga-icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg></div>
+            <span class="ga-title">Before, During &amp; After Medication</span>
+          </div>
+          <div class="ga-plus">+</div>
+        </div>
+        <div class="ga-body">Whether you're just starting, navigating side effects, or considering tapering — counseling provides continuity at every phase of your journey.</div>
       </div>
+
     </div>
   </div>
 </section>
 
 <!-- WHO -->
-<section id="who">
-  <div class="reveal">
-    <p class="section-eyebrow">Who I Help</p>
-    <h2 class="section-title">You might be ready for counseling if…</h2>
-    <div class="divider"></div>
-  </div>
-  <div class="who-grid">
-    <div class="who-card reveal">
-      <div class="who-icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg></div>
-      <h3 class="who-title">You're starting a GLP-1</h3>
-      <p class="who-desc">You want to set yourself up for long-term success — not just weight loss, but a genuinely healthier relationship with food, your body, and yourself.</p>
+<section id="who" style="background:var(--bg);padding:7rem 5.5rem;">
+  <div style="max-width:900px;margin:0 auto;">
+    <div class="reveal" style="text-align:center;margin-bottom:4rem;">
+      <p class="section-eyebrow">Who I Help</p>
+      <h2 class="section-title" style="font-size:2.6rem;">You might be ready for counseling if…</h2>
+      <div class="divider" style="margin:1.2rem auto 0;"></div>
     </div>
-    <div class="who-card reveal">
-      <div class="who-icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg></div>
-      <h3 class="who-title">You're already on medication</h3>
-      <p class="who-desc">The medication is working, but you're experiencing unexpected emotions, body image shifts, or simply feel like something deeper is still missing.</p>
-    </div>
-    <div class="who-card reveal">
-      <div class="who-icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg></div>
-      <h3 class="who-title">You're dealing with food noise</h3>
-      <p class="who-desc">Obsessive thoughts about food, eating rituals, or extreme rigidity have entered your life, and you want thoughtful support to work through them safely.</p>
-    </div>
-    <div class="who-card reveal">
-      <div class="who-icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></div>
-      <h3 class="who-title">You have a complex food history</h3>
-      <p class="who-desc">Years of dieting, emotional eating, or disordered patterns that predate the medication — therapy provides a safe space to explore that history and heal it.</p>
-    </div>
-    <div class="who-card reveal">
-      <div class="who-icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg></div>
-      <h3 class="who-title">You feel alone in this</h3>
-      <p class="who-desc">There's no one in your life you can truly talk to about the weight, the shame, the hope, and the complexity. You want someone who genuinely gets it.</p>
-    </div>
-    <div class="who-card reveal">
-      <div class="who-icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg></div>
-      <h3 class="who-title">You're thinking about stopping</h3>
-      <p class="who-desc">You want the mindset and habits firmly in place before or after tapering, so your progress is yours to keep — with or without the medication.</p>
+    <div class="reveal" style="display:grid;grid-template-columns:1fr 1fr;gap:0;background:var(--border);">
+
+      <div class="who-row-item">
+        <div class="who-row-num">01</div>
+        <div><h3 class="who-row-title">You're starting a GLP-1</h3><p class="who-row-desc">You want long-term success — not just weight loss, but a healthier relationship with food and yourself.</p></div>
+      </div>
+      <div class="who-row-item">
+        <div class="who-row-num">02</div>
+        <div><h3 class="who-row-title">You're already on medication</h3><p class="who-row-desc">The medication is working, but something emotional or psychological still feels unresolved.</p></div>
+      </div>
+      <div class="who-row-item">
+        <div class="who-row-num">03</div>
+        <div><h3 class="who-row-title">You're dealing with food noise</h3><p class="who-row-desc">Obsessive thoughts about food, rituals, or rigidity have entered your life and you want support.</p></div>
+      </div>
+      <div class="who-row-item">
+        <div class="who-row-num">04</div>
+        <div><h3 class="who-row-title">You have a complex food history</h3><p class="who-row-desc">Years of dieting or emotional eating that predate the medication — therapy helps you heal that history.</p></div>
+      </div>
+      <div class="who-row-item">
+        <div class="who-row-num">05</div>
+        <div><h3 class="who-row-title">You feel alone in this</h3><p class="who-row-desc">There's no one you can truly talk to about the weight, the shame, and the complexity. You want someone who gets it.</p></div>
+      </div>
+      <div class="who-row-item">
+        <div class="who-row-num">06</div>
+        <div><h3 class="who-row-title">You're thinking about stopping</h3><p class="who-row-desc">You want the mindset and habits in place so your progress stays yours — with or without the medication.</p></div>
+      </div>
+
     </div>
   </div>
 </section>
@@ -468,9 +622,9 @@
     <p class="section-eyebrow">About Marni</p>
     <h2 class="section-title">Someone who truly<br>understands the <em>journey</em></h2>
     <div class="divider"></div>
-    <p style="font-size:.9rem;color:var(--text-lt);line-height:1.95;margin-bottom:1.2rem;">I'm Marni Riffkin, a Licensed Clinical Social Worker with over 25 years of experience. I hold my LICSW in Washington DC and my LCSW-C in Maryland, with a practice dedicated to the mental health and emotional dimensions of weight loss and GLP-1 journeys.</p>
-    <p style="font-size:.9rem;color:var(--text-lt);line-height:1.95;margin-bottom:1.2rem;">I don't just understand this journey clinically — I've lived it. As a bariatric patient myself, and a GLP-1 patient since 2020, I know firsthand what it feels like to navigate the hope, the complexity, the body image shifts, and the profound internal work that no medication can do for you. That lived experience shapes everything I bring to our sessions.</p>
-    <p style="font-size:.9rem;color:var(--text-lt);line-height:1.95;margin-bottom:1.8rem;">I offer telehealth to clients across many states through the Social Work Licensure Compact — an agreement that enables licensed social workers to practice across member states, allowing me to serve clients well beyond the DC/Maryland area. Please reach out to confirm whether your state is currently included.</p>
+    <p style="font-size:.9rem;color:var(--text-lt);line-height:1.95;margin-bottom:1.2rem;">I'm Marni Riffkin, a Licensed Clinical Social Worker with over 25 years of experience, specializing in the emotional and psychological dimensions of weight loss and GLP-1 journeys.</p>
+    <p style="font-size:.9rem;color:var(--text-lt);line-height:1.95;margin-bottom:1.2rem;">I don't just understand this journey clinically — I've lived it. As a bariatric patient and a GLP-1 patient since 2020, I know firsthand the hope, the complexity, and the internal work no medication can do for you.</p>
+    <p style="font-size:.9rem;color:var(--text-lt);line-height:1.95;margin-bottom:1.8rem;">I offer telehealth across many states through the Social Work Licensure Compact. Reach out to confirm whether your state is included.</p>
     <div class="about-tags">
       <span class="about-tag">GLP-1 Patient Since 2020</span>
       <span class="about-tag">Bariatric Experience</span>
@@ -582,7 +736,7 @@
         </div>
         <div style="display:flex;align-items:flex-start;gap:1rem;font-size:.87rem;color:rgba(255,255,255,.8);">
           <svg style="color:var(--slate);flex-shrink:0;margin-top:.1rem;" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-          <div><div style="font-size:.63rem;letter-spacing:.1em;text-transform:uppercase;color:var(--slate);margin-bottom:.13rem;">Email</div>marni@marniriffkin.com</div>
+          <div><div style="font-size:.63rem;letter-spacing:.1em;text-transform:uppercase;color:var(--slate);margin-bottom:.13rem;">Email</div><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="2944485b47406944485b47405b404f4f424047074a4644">[email&#160;protected]</a></div>
         </div>
         <div style="display:flex;align-items:flex-start;gap:1rem;font-size:.87rem;color:rgba(255,255,255,.8);">
           <svg style="color:var(--slate);flex-shrink:0;margin-top:.1rem;" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
@@ -691,6 +845,35 @@
     document.querySelectorAll('.therapy-toggle').forEach(t => t.classList.remove('open'));
     if(!isOpen) { body.classList.add('open'); toggle.classList.add('open'); }
   }
+
+  function toggleAccord(header) {
+    const body = header.nextElementSibling;
+    const plus = header.querySelector('.ga-plus');
+    const isOpen = body.classList.contains('open');
+    document.querySelectorAll('.ga-body').forEach(b => b.classList.remove('open'));
+    document.querySelectorAll('.ga-plus').forEach(p => p.classList.remove('open'));
+    if(!isOpen) { body.classList.add('open'); plus.classList.add('open'); }
+  }
+
+  // Mobile menu
+  function toggleMenu() {
+    const menu = document.getElementById('mobileMenu');
+    const ham = document.getElementById('hamburger');
+    menu.classList.toggle('open');
+    ham.classList.toggle('open');
+  }
+  function closeMenu() {
+    document.getElementById('mobileMenu').classList.remove('open');
+    document.getElementById('hamburger').classList.remove('open');
+  }
+  // Show hamburger on mobile
+  function checkNav() {
+    const ham = document.getElementById('hamburger');
+    if(window.innerWidth <= 960) { ham.style.display='flex'; }
+    else { ham.style.display='none'; document.getElementById('mobileMenu').classList.remove('open'); }
+  }
+  checkNav();
+  window.addEventListener('resize', checkNav);
 
   function toggleFaq(qEl) {
     const ans = qEl.nextElementSibling;
